@@ -185,6 +185,327 @@
                 stroke-dashoffset: 0;
             }
         }
+
+        /* === DARK MODE === */
+        .dark-mode .cream-bg {
+            background-color: #111113;
+        }
+
+        .dark-mode {
+            color: #e2e8f0;
+        }
+
+        .dark-mode .text-slate-900 {
+            color: #e2e8f0 !important;
+        }
+
+        .dark-mode .text-slate-700 {
+            color: #94a3b8 !important;
+        }
+
+        .dark-mode .text-slate-600 {
+            color: #94a3b8 !important;
+        }
+
+        .dark-mode .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        .dark-mode .text-teal-600 {
+            color: #2dd4bf !important;
+        }
+
+        .dark-mode .text-teal-800 {
+            color: #5eead4 !important;
+        }
+
+        .dark-mode .text-slate-800 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark-mode .text-slate-400 {
+            color: #94a3b8 !important;
+        }
+
+        .dark-mode .text-teal-700 {
+            color: #2dd4bf !important;
+        }
+
+        .dark-mode .text-teal-400 {
+            color: #5eead4 !important;
+        }
+
+        .dark-mode .text-orange-600 {
+            color: #fb923c !important;
+        }
+
+        .dark-mode .text-orange-400 {
+            color: #fb923c !important;
+        }
+
+        /* Form elements in dark mode */
+        .dark-mode textarea,
+        .dark-mode select,
+        .dark-mode input {
+            background-color: #1a1a1e !important;
+            border-color: #333340 !important;
+            color: #e2e8f0 !important;
+        }
+
+        .dark-mode textarea::placeholder {
+            color: #64748b !important;
+        }
+
+        /* Dark mode simulate button */
+        .dark-mode .bg-slate-900 {
+            background-color: #0f172a !important;
+        }
+
+        .dark-mode .bg-slate-100 {
+            background-color: #1e1e22 !important;
+        }
+
+        .dark-mode .hover\:bg-slate-100:hover {
+            background-color: #252530 !important;
+        }
+
+        .dark-mode .bg-slate-200 {
+            background-color: #2a2a30 !important;
+        }
+
+        .dark-mode .bg-white {
+            background-color: #1e1e22 !important;
+        }
+
+        .dark-mode .bg-slate-50 {
+            background-color: #18181c !important;
+        }
+
+        .dark-mode .border-slate-100 {
+            border-color: #2a2a30 !important;
+        }
+
+        .dark-mode .border-slate-200 {
+            border-color: #2a2a30 !important;
+        }
+
+        .dark-mode .border-slate-300 {
+            border-color: #333340 !important;
+        }
+
+        .dark-mode .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark-mode .border-black\/\[.08\] {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Act 2 overlays in dark mode */
+        .dark-mode .bg-white\/80 {
+            background-color: rgba(30, 30, 34, 0.85) !important;
+        }
+
+        .dark-mode .bg-white\/50 {
+            background-color: rgba(30, 30, 34, 0.7) !important;
+        }
+
+        /* Scrollbar in dark mode */
+        .dark-mode ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        /* Act 3 Key Finding */
+        .dark-mode .bg-slate-50.border-l-4,
+        .dark-mode .bg-teal-50 {
+            background-color: #132f2f !important;
+        }
+
+        .dark-mode .bg-slate-50.border-l-4 .text-slate-800,
+        .dark-mode .bg-slate-50.border-l-4 .text-teal-700 {
+            color: #5eead4 !important;
+        }
+
+        .dark-mode .bg-slate-50.border-l-4 div {
+            color: #e2e8f0 !important;
+        }
+
+        /* Teal blur blob in dark mode */
+        .dark-mode .bg-teal-50.rounded-full {
+            background-color: rgba(20, 184, 166, 0.08) !important;
+        }
+
+        /* Toggle button */
+        .theme-toggle-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .theme-toggle-btn {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(30, 30, 34, 0.8);
+        }
+
+        .dark-mode .theme-toggle-btn:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .theme-toggle-btn svg {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .theme-toggle-btn:hover svg {
+            transform: rotate(30deg);
+        }
+
+        /* View toggle in dark mode */
+        .dark-mode #view-toggle {
+            background: rgba(30, 30, 34, 0.6) !important;
+            border-color: #2a2a30 !important;
+        }
+
+        .dark-mode #toggle-overview.bg-white,
+        .dark-mode #toggle-network.bg-white {
+            background-color: #2a2a30 !important;
+        }
+
+        /* === NETWORK PAGE LIGHT MODE === */
+        /* When NOT in dark-mode, override the hardcoded dark network colors */
+        body:not(.dark-mode) #act4-network {
+            background-color: #f7f5ef !important;
+            color: #1e293b !important;
+        }
+
+        body:not(.dark-mode) #act4-network #network-container {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        body:not(.dark-mode) #act4-network #network-canvas {
+            background-color: #ffffff;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #1e293b !important;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip .text-white {
+            color: #1e293b !important;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip .text-slate-300 {
+            color: #475569 !important;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip .text-slate-400 {
+            color: #64748b !important;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip .text-slate-500 {
+            color: #94a3b8 !important;
+        }
+
+        body:not(.dark-mode) #act4-network #node-tooltip [class*="border-slate"] {
+            border-color: #e2e8f0 !important;
+        }
+
+        /* Right panel Drift Tree */
+        body:not(.dark-mode) #act4-network>.w-96 {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #1e293b !important;
+        }
+
+        /* Catch-ALL border override for network page in light mode */
+        body:not(.dark-mode) #act4-network [class*="border-slate-7"],
+        body:not(.dark-mode) #act4-network [class*="border-slate-8"] {
+            border-color: #e2e8f0 !important;
+        }
+
+        /* Catch-all for bg-slate-800 elements (badges, root card, vertical line) */
+        body:not(.dark-mode) #act4-network [class*="bg-slate-800"] {
+            background-color: #f1f5f9 !important;
+            color: #1e293b !important;
+        }
+
+        /* Tooltip bg-slate-900 */
+        body:not(.dark-mode) #act4-network .bg-slate-900 {
+            background-color: #ffffff !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-white {
+            color: #1e293b !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-slate-300 {
+            color: #475569 !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-slate-400 {
+            color: #64748b !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        /* Drift tree items background */
+        body:not(.dark-mode) #act4-network [class*="bg-slate-800/"] {
+            background-color: rgba(241, 245, 249, 0.7) !important;
+        }
+
+        /* Branch connector backgrounds that match panel bg */
+        body:not(.dark-mode) #act4-network [class*="bg-[#111"] {
+            background-color: #ffffff !important;
+        }
+
+        body:not(.dark-mode) #act4-network [class*="border-[#111"] {
+            border-color: #ffffff !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-teal-400 {
+            color: #0d9488 !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-orange-400 {
+            color: #ea580c !important;
+        }
+
+        body:not(.dark-mode) #act4-network .text-white.font-mono {
+            color: #1e293b !important;
+        }
+
+        /* Vertical connection line in drift tree */
+        body:not(.dark-mode) #act4-network .w-px[class*="bg-slate"] {
+            background-color: #e2e8f0 !important;
+        }
+
+        /* Branch lines in drift tree */
+        body:not(.dark-mode) #act4-network [class*="border-l"][class*="border-slate"] {
+            border-left-color: #e2e8f0 !important;
+        }
+
+        /* Branch bottom border */
+        body:not(.dark-mode) #act4-network [class*="border-b"][class*="border-slate"] {
+            border-bottom-color: #e2e8f0 !important;
+        }
     </style>
 </head>
 
@@ -204,13 +525,32 @@
                 class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-500 hover:text-slate-800 transition-all">Network</button>
         </div>
 
-        <div class="flex gap-6 text-sm font-medium" id="nav-links">
+        <div class="flex gap-6 text-sm font-medium items-center" id="nav-links">
             <a href="#" id="nav-home" class="text-teal-600 hover:text-teal-400 font-bold transition-colors">Home</a>
             <a href="#" id="nav-console" class="text-teal-600 hover:text-teal-400 font-bold transition-colors">City
                 Console</a>
             <a href="#" id="nav-results"
                 class="text-teal-600 hover:text-teal-400 font-bold transition-colors">Results</a>
             <a href="#" class="text-teal-800 hover:text-teal-600 font-bold transition-colors">Sign In</a>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="display:none;">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            </button>
         </div>
     </nav>
 
@@ -619,6 +959,45 @@
         let policyWave = { radius: 0, active: false };
         let currentMode = 'overview'; // 'overview' or 'network'
 
+        // === DARK MODE TOGGLE ===
+        (function initDarkMode() {
+            const stored = localStorage.getItem('margin-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = stored === 'dark' || (!stored && prefersDark);
+            if (isDark) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
+
+            // Wait for DOM
+            document.addEventListener('DOMContentLoaded', () => {
+                updateToggleIcon(document.body.classList.contains('dark-mode'));
+            });
+        })();
+
+        function updateToggleIcon(isDark) {
+            const moonIcon = document.getElementById('icon-moon');
+            const sunIcon = document.getElementById('icon-sun');
+            if (moonIcon && sunIcon) {
+                moonIcon.style.display = isDark ? 'none' : 'block';
+                sunIcon.style.display = isDark ? 'block' : 'none';
+                sunIcon.style.color = isDark ? '#fbbf24' : '';
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            document.documentElement.classList.toggle('dark-mode');
+            localStorage.setItem('margin-theme', isDark ? 'dark' : 'light');
+            updateToggleIcon(isDark);
+        }
+
+        // Attach listener once DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('theme-toggle');
+            if (btn) btn.addEventListener('click', toggleDarkMode);
+        });
+
         // Data formats for UI logic later
         const districts = [];
         const logLines = [
@@ -905,9 +1284,21 @@
         // Controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.maxPolarAngle = Math.PI / 2 - 0.1; // Don't go below ground
+        controls.dampingFactor = 0.08;
+        controls.enableZoom = true;
+        controls.enablePan = true;
+        controls.minDistance = 30;
+        controls.maxDistance = 500;
+        controls.maxPolarAngle = Math.PI / 2 - 0.05; // Slight ground limit
+        controls.autoRotate = false;
+        controls.autoRotateSpeed = 0.5;
         controls.enabled = false; // Disabled during intro
+        let userInteracted = false;
+        controls.addEventListener('start', () => { userInteracted = true; controls.autoRotate = false; });
+        controls.addEventListener('end', () => {
+            // Resume auto-rotate after 5s of inactivity
+            setTimeout(() => { if (!controls._dragging) controls.autoRotate = true; }, 5000);
+        });
 
         // Animation Intro state
         let introProgress = 0;
@@ -986,17 +1377,20 @@
 
                 if (introProgress >= 1) {
                     controls.enabled = true;
-                    orbitalAngle = Math.PI / 2;
+                    controls.target.set(0, 0, 0);
+                    // Position camera at a nice angle and hand off to OrbitControls
+                    camera.position.set(
+                        Math.sin(Math.PI / 2) * 250,
+                        100,
+                        Math.cos(Math.PI / 2) * 250
+                    );
+                    camera.lookAt(0, 0, 0);
+                    controls.autoRotate = true;
+                    introProgress = 2; // Mark intro as fully done
                 }
-            } else if (introProgress >= 1) {
-                // Slow auto orbit
-                orbitalAngle += 0.001;
-                const r = 250; // Wide radius prevents clipping front buildings
-                camera.position.x = Math.sin(orbitalAngle) * r;
-                camera.position.z = Math.cos(orbitalAngle) * r;
-                camera.position.y = 100;
-                camera.lookAt(0, 0, 0);
-                controls.update(); // only update when controlling
+            } else {
+                // OrbitControls handles everything now
+                controls.update();
             }
 
             // Orbital ring animation
@@ -1143,6 +1537,11 @@
         const btnNetwork = document.getElementById('toggle-network');
         const act4 = document.getElementById('act4-network');
 
+        // Helper: check if we're in dark mode
+        function isDarkMode() {
+            return document.body.classList.contains('dark-mode');
+        }
+
         btnNetwork.addEventListener('click', () => {
             // UI Toggle States
             btnNetwork.classList.remove('text-slate-500', 'hover:text-slate-800');
@@ -1150,11 +1549,13 @@
             btnOverview.classList.remove('bg-white', 'shadow-sm', 'text-slate-900');
             btnOverview.classList.add('text-slate-500', 'hover:text-slate-800');
 
-            // Theme switch
-            document.getElementById('body-container').classList.remove('cream-bg');
-            document.getElementById('body-container').classList.add('black-bg');
-            document.getElementById('logo').classList.add('text-cream');
-            navLinksArr.forEach(link => link.classList.add('text-slate-300'));
+            // Theme switch: Only apply dark nav theme if in dark mode
+            if (isDarkMode()) {
+                document.getElementById('body-container').classList.remove('cream-bg');
+                document.getElementById('body-container').classList.add('black-bg');
+                document.getElementById('logo').classList.add('text-cream');
+                navLinksArr.forEach(link => link.classList.add('text-slate-300'));
+            }
 
             // View switch
             act2.style.display = 'none';
@@ -1175,7 +1576,7 @@
             btnNetwork.classList.remove('bg-white', 'shadow-sm', 'text-slate-900');
             btnNetwork.classList.add('text-slate-500', 'hover:text-slate-800');
 
-            // Theme switch
+            // Theme switch: Restore appropriate theme
             document.getElementById('body-container').classList.remove('black-bg');
             document.getElementById('body-container').classList.add('cream-bg');
             document.getElementById('logo').classList.remove('text-cream');
@@ -1384,7 +1785,15 @@
                     return;
                 }
 
-                ctx.clearRect(0, 0, width, height);
+                const lightMode = !document.body.classList.contains('dark-mode');
+
+                // Fill canvas background based on theme
+                if (lightMode) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, width, height);
+                } else {
+                    ctx.clearRect(0, 0, width, height);
+                }
 
                 // 1. Physics update
                 for (let i = 0; i < nodes.length; i++) {
@@ -1464,12 +1873,12 @@
                         const isTargetHovered = (targetIdx === hoveredNodeId);
 
                         if (hoveredNodeId !== -1 && !isHovered && !isTargetHovered) {
-                            ctx.strokeStyle = `rgba(255,255,255, 0.02)`;
+                            ctx.strokeStyle = lightMode ? `rgba(0,0,0, 0.03)` : `rgba(255,255,255, 0.02)`;
                         } else if (isHovered || isTargetHovered) {
-                            ctx.strokeStyle = `rgba(255,255,255, 0.8)`;
+                            ctx.strokeStyle = lightMode ? `rgba(0,0,0, 0.6)` : `rgba(255,255,255, 0.8)`;
                             ctx.lineWidth = 1.5;
                         } else {
-                            ctx.strokeStyle = `rgba(${rgb}, 0.15)`;
+                            ctx.strokeStyle = `rgba(${rgb}, ${lightMode ? '0.25' : '0.15'})`;
                             ctx.lineWidth = 0.5;
                         }
 
@@ -1503,7 +1912,7 @@
                         ctx.beginPath();
                         ctx.arc(n.x, n.y, n.rippleRadius, 0, Math.PI * 2);
                         const alpha = 1 - (n.rippleRadius / 30);
-                        ctx.strokeStyle = `rgba(255,255,255, ${alpha})`;
+                        ctx.strokeStyle = lightMode ? `rgba(0,0,0, ${alpha * 0.5})` : `rgba(255,255,255, ${alpha})`;
                         ctx.lineWidth = 2;
                         ctx.stroke();
                     }
@@ -1517,7 +1926,7 @@
                         grad.addColorStop(0.8, `rgba(100, 116, 139, 0.8)`);
                         grad.addColorStop(1, `rgba(100, 116, 139, 0)`);
                     } else {
-                        grad.addColorStop(0, '#fff');
+                        grad.addColorStop(0, lightMode ? '#1e293b' : '#fff');
                         grad.addColorStop(0.3, `rgb(${rgb})`);
                         grad.addColorStop(1, `rgba(${rgb}, 0)`);
                     }
@@ -1540,7 +1949,7 @@
                     if (n.id === hoveredNodeId) {
                         ctx.beginPath();
                         ctx.arc(n.x, n.y, r * 2, 0, Math.PI * 2);
-                        ctx.strokeStyle = '#fff';
+                        ctx.strokeStyle = lightMode ? '#1e293b' : '#fff';
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
