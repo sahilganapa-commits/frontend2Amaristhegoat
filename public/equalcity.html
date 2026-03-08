@@ -1344,9 +1344,8 @@
             }, 2000);
         }
 
-        // Live updating UI sentiments
-        let sCount = 0, oCount = 0;
-        const sTarget = 48, oTarget = 29;
+        // Live updating UI sentiments — real counts from buildings
+        let revealedSupport = 0, revealedOppose = 0, revealedNeutral = 0;
 
         function animateCity() {
             requestAnimationFrame(animateCity);
@@ -1426,13 +1425,19 @@
                     if (!b.changed && b.dist < policyWave.radius) {
                         b.changed = true;
 
-                        // Fake sentiment tally
-                        if (b.stance === 'support' && sCount < sTarget) sCount += 2;
-                        if (b.stance === 'oppose' && oCount < oTarget) oCount += 1.5;
+                        // Real sentiment tally from actual building stances
+                        if (b.stance === 'support') revealedSupport++;
+                        else if (b.stance === 'oppose') revealedOppose++;
+                        else revealedNeutral++;
 
-                        document.getElementById('sent-support').innerText = Math.floor(sCount) + '%';
-                        document.getElementById('sent-oppose').innerText = Math.floor(oCount) + '%';
-                        document.getElementById('sent-neutral').innerText = Math.max(0, 100 - Math.floor(sCount) - Math.floor(oCount)) + '%';
+                        const totalRevealed = revealedSupport + revealedOppose + revealedNeutral;
+                        const sPct = Math.round((revealedSupport / totalRevealed) * 100);
+                        const oPct = Math.round((revealedOppose / totalRevealed) * 100);
+                        const nPct = 100 - sPct - oPct;
+
+                        document.getElementById('sent-support').innerText = sPct + '%';
+                        document.getElementById('sent-oppose').innerText = oPct + '%';
+                        document.getElementById('sent-neutral').innerText = nPct + '%';
                     }
 
                     if (b.changed) {
