@@ -1246,6 +1246,60 @@
             scene.add(mesh);
         }
 
+        // ============================================
+        // BACKEND API: updateSentiment(supportPct, opposePct)
+        // Call this from your backend to dynamically
+        // reassign building stances and recolor them.
+        // neutralPct is automatically calculated as remainder.
+        // Example: updateSentiment(20, 50) → 20% support, 50% oppose, 30% neutral
+        // ============================================
+        window.updateSentiment = function (supportPct, opposePct) {
+            const neutralPct = Math.max(0, 100 - supportPct - opposePct);
+            const total = buildings.length;
+            const supportCount = Math.round((supportPct / 100) * total);
+            const opposeCount = Math.round((opposePct / 100) * total);
+            // Rest are neutral
+
+            // Shuffle buildings randomly so reassignment isn't position-biased
+            const shuffled = [...buildings].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach((b, i) => {
+                let newStance;
+                if (i < supportCount) newStance = 'support';
+                else if (i < supportCount + opposeCount) newStance = 'oppose';
+                else newStance = 'neutral';
+
+                b.stance = newStance;
+                b.changed = true;
+                b.targetColor = newStance === 'support'
+                    ? new THREE.Color(0x06b6d4)
+                    : (newStance === 'oppose' ? new THREE.Color(0xf97316) : new THREE.Color(0x94a3b8));
+
+                // Set material properties based on stance
+                if (newStance !== 'neutral') {
+                    b.mesh.material.opacity = 0.20;
+                    b.mesh.material.emissiveIntensity = 0.4;
+                    b.line.material.opacity = 0.5;
+                } else {
+                    b.mesh.material.opacity = 0.15;
+                    b.mesh.material.emissiveIntensity = 0.2;
+                    b.line.material.opacity = 0.3;
+                }
+            });
+
+            // Update sentiment counters
+            revealedSupport = supportCount;
+            revealedOppose = opposeCount;
+            revealedNeutral = total - supportCount - opposeCount;
+
+            // Update UI
+            document.getElementById('sent-support').innerText = supportPct + '%';
+            document.getElementById('sent-oppose').innerText = opposePct + '%';
+            document.getElementById('sent-neutral').innerText = neutralPct + '%';
+
+            console.log(`[MARGIN] Sentiment updated: Support ${supportPct}%, Oppose ${opposePct}%, Neutral ${neutralPct}%`);
+        };
+
         // Policy Wave Ring
         const waveGeo = new THREE.TorusGeometry(1, 0.5, 16, 100);
         const waveMat = new THREE.MeshBasicMaterial({
@@ -1439,28 +1493,17 @@
                         document.getElementById('sent-oppose').innerText = oPct + '%';
                         document.getElementById('sent-neutral').innerText = nPct + '%';
                     }
-
-                    if (b.changed) {
-                        // Lerp material color
-                        b.mesh.material.color.lerp(b.targetColor, 0.05);
-                        b.mesh.material.emissive.lerp(b.targetColor, 0.05);
-
-                        // Make wires glow the target color intensely
-                        b.line.material.color.lerp(b.targetColor, 0.1);
-
-                        if (b.stance !== 'neutral') {
-                            b.mesh.material.opacity = 0.20; // Less opaque to catch bloom without blowing out
-                            b.mesh.material.emissiveIntensity = 0.4;
-                            b.line.material.opacity = 0.5; // Less bright edges
-                        } else {
-                            // Keep neutral buildings distinctly grey and visible but subtle
-                            b.mesh.material.opacity = 0.15;
-                            b.mesh.material.emissiveIntensity = 0.2;
-                            b.line.material.opacity = 0.3;
-                        }
-                    }
                 });
             }
+
+            // Building color lerp — runs every frame so updateSentiment() transitions work anytime
+            buildings.forEach(b => {
+                if (b.changed) {
+                    b.mesh.material.color.lerp(b.targetColor, 0.05);
+                    b.mesh.material.emissive.lerp(b.targetColor, 0.05);
+                    b.line.material.color.lerp(b.targetColor, 0.1);
+                }
+            });
 
             // Animate Data Particles (Rising streams)
             const positions = particleSystem.geometry.attributes.position.array;
