@@ -1300,6 +1300,170 @@
             console.log(`[MARGIN] Sentiment updated: Support ${supportPct}%, Oppose ${opposePct}%, Neutral ${neutralPct}%`);
         };
 
+        // ============================================
+        // BACKEND API: updateResults(data)
+        // Updates the Results/Analytics dashboard stats,
+        // reaction bar, and chart labels.
+        // Example:
+        //   updateResults({
+        //     popAffected: 200000,
+        //     strongSupport: 90000,
+        //     strongOppose: 60000,
+        //     displacementRisk: 12000,
+        //     estEngagement: 35000,
+        //     supportPct: 45,
+        //     neutralPct: 25,
+        //     opposePct: 30
+        //   })
+        // ============================================
+        window.updateResults = function (data) {
+            // Update stat cards
+            const statCards = document.querySelectorAll('.counter');
+            const targets = [
+                data.popAffected, data.strongSupport, data.strongOppose,
+                data.displacementRisk, data.estEngagement
+            ];
+            statCards.forEach((card, i) => {
+                if (targets[i] !== undefined) {
+                    card.setAttribute('data-target', targets[i]);
+                    // Animate count up
+                    let curr = 0;
+                    const target = targets[i];
+                    const step = target / 50;
+                    const intval = setInterval(() => {
+                        curr += step;
+                        if (curr >= target) { curr = target; clearInterval(intval); }
+                        card.innerText = Math.floor(curr).toLocaleString();
+                    }, 20);
+                }
+            });
+
+            // Update reaction bar
+            if (data.supportPct !== undefined) {
+                const sPct = data.supportPct;
+                const nPct = data.neutralPct || (100 - sPct - (data.opposePct || 0));
+                const oPct = data.opposePct || (100 - sPct - nPct);
+
+                document.getElementById('bar-support').style.width = sPct + '%';
+                document.getElementById('bar-neutral').style.width = nPct + '%';
+                document.getElementById('bar-oppose').style.width = oPct + '%';
+
+                // Update labels
+                const labels = document.querySelectorAll('#act3-results .mb-8 .flex.justify-between span');
+                if (labels.length >= 3) {
+                    labels[0].innerText = `Support (${sPct}%)`;
+                    labels[1].innerText = `Neutral (${nPct}%)`;
+                    labels[2].innerText = `Oppose (${oPct}%)`;
+                }
+            }
+
+            console.log('[MARGIN] Results updated:', data);
+        };
+
+        // ============================================
+        // BACKEND API: updateAIInsight(data)
+        // Updates the AI Insight panel text.
+        // Example:
+        //   updateAIInsight({
+        //     headline: "Rising opposition in Zone 3",
+        //     body: "Analysis shows growing resistance...",
+        //     keyFinding: "Delaying implementation reduces opposition by 15%"
+        //   })
+        // ============================================
+        window.updateAIInsight = function (data) {
+            const panel = document.querySelector('#act3-results .shadow-lg.relative');
+            if (!panel) return;
+
+            if (data.headline) {
+                panel.querySelector('h4').innerText = data.headline;
+            }
+            if (data.body) {
+                panel.querySelector('p').innerText = data.body;
+            }
+            if (data.keyFinding) {
+                const kf = panel.querySelector('.border-l-4 .text-sm');
+                if (kf) kf.innerText = data.keyFinding;
+            }
+
+            console.log('[MARGIN] AI Insight updated:', data);
+        };
+
+        // ============================================
+        // BACKEND API: updateCharts(data)
+        // Updates bar chart values on the Results page.
+        // Each chart is identified by index (0=Race/Ethnicity, 1=Income Bracket, 2=Engagement).
+        // Bars within each chart are updated by index.
+        // Example:
+        //   updateCharts([
+        //     { bars: [{height: 70, label: "Support: 70%"}, {height: 30, label: "Oppose: 30%"}] },
+        //     { bars: [{height: 40, label: "Support: 40%"}, {height: 60, label: "Oppose: 60%"}] },
+        //     { bars: [{height: 55, label: "Support: 55%"}, {height: 45, label: "Oppose: 45%"}] }
+        //   ])
+        // ============================================
+        window.updateCharts = function (charts) {
+            const chartContainers = document.querySelectorAll('#act3-results .chart-bar');
+            let barIdx = 0;
+            charts.forEach(chart => {
+                chart.bars.forEach(bar => {
+                    if (chartContainers[barIdx]) {
+                        chartContainers[barIdx].style.height = bar.height + '%';
+                        const label = chartContainers[barIdx].querySelector('div');
+                        if (label && bar.label) label.innerText = bar.label;
+                    }
+                    barIdx++;
+                });
+            });
+
+            console.log('[MARGIN] Charts updated:', charts);
+        };
+
+        // ============================================
+        // BACKEND API: updateNetworkNodes(supportPct, opposePct)
+        // Reassigns network page node stances.
+        // Colors update on next draw frame.
+        // Example: updateNetworkNodes(30, 40)
+        // ============================================
+        window.updateNetworkNodes = function (supportPct, opposePct) {
+            if (!window.networkInited) {
+                console.warn('[MARGIN] Network not initialized yet. Navigate to Network page first.');
+                return;
+            }
+            // Access nodes via the network animation closure
+            if (window._marginNetworkNodes) {
+                const nodes = window._marginNetworkNodes;
+                const total = nodes.length;
+                const sCount = Math.round((supportPct / 100) * total);
+                const oCount = Math.round((opposePct / 100) * total);
+                const shuffled = [...nodes].sort(() => Math.random() - 0.5);
+
+                shuffled.forEach((n, i) => {
+                    if (i < sCount) n.stance = 'support';
+                    else if (i < sCount + oCount) n.stance = 'oppose';
+                    else n.stance = 'neutral';
+                });
+
+                console.log(`[MARGIN] Network nodes updated: Support ${supportPct}%, Oppose ${opposePct}%, Neutral ${100 - supportPct - opposePct}%`);
+            }
+        };
+
+        // ============================================
+        // BACKEND API: addSystemLog(message)
+        // Adds a custom log entry to the system log
+        // on the City Console page.
+        // Example: addSystemLog("Backend model converged.")
+        // ============================================
+        window.addSystemLog = function (message) {
+            const logEl = document.getElementById('system-log');
+            if (!logEl) return;
+            const now = new Date();
+            const ts = now.toTimeString().slice(0, 8);
+            const div = document.createElement('div');
+            div.className = 'fade-in';
+            div.textContent = `[${ts}] ${message}`;
+            logEl.prepend(div);
+            console.log(`[MARGIN] Log: ${message}`);
+        };
+
         // Policy Wave Ring
         const waveGeo = new THREE.TorusGeometry(1, 0.5, 16, 100);
         const waveMat = new THREE.MeshBasicMaterial({
@@ -1710,6 +1874,9 @@
                     }
                 }
             }
+
+            // Expose nodes for backend API (updateNetworkNodes)
+            window._marginNetworkNodes = nodes;
 
             // Setup Fence Sitters initial list
             const fenceSittersContainer = document.getElementById('branch-neutral');
